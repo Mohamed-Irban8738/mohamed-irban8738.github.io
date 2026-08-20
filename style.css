@@ -1,50 +1,1666 @@
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#07080c;--panel:#101219;--text:#f5f7fb;--muted:#9ba3b4;--line:#242936;--accent:#7c5cff;--accent2:#23d5ff}
-html{scroll-behavior:smooth}
-body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 80% 10%,rgba(124,92,255,.12),transparent 28%),radial-gradient(circle at 10% 40%,rgba(35,213,255,.06),transparent 25%)}
-a{color:inherit;text-decoration:none}
-.navbar{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:20px 6%;background:rgba(7,8,12,.72);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.05)}
-.logo{font-size:25px;font-weight:800}.logo span{color:var(--accent)}
-nav{display:flex;gap:28px}nav a{font-size:14px;color:var(--muted);transition:.2s}nav a:hover{color:#fff}
-.menu-btn{display:none;background:none;border:0;color:#fff;font-size:24px}
-.hero{min-height:100vh;display:flex;align-items:center;padding:120px 6% 70px}
-.hero-grid{width:100%;max-width:1200px;margin:auto;display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:center}
-.eyebrow,.section-tag{font-size:12px;letter-spacing:2px;color:#8d95a8;font-weight:700}
-h1{font-size:clamp(44px,7vw,78px);line-height:1.02;margin:20px 0 18px;letter-spacing:-3px}
-h1 span{background:linear-gradient(90deg,#fff,var(--accent2));-webkit-background-clip:text;color:transparent}
-.hero h2{font-size:clamp(20px,3vw,30px);font-weight:600;max-width:720px}
-.hero-text{color:var(--muted);max-width:670px;margin:20px 0 30px;font-size:17px}
-.actions{display:flex;gap:12px;flex-wrap:wrap}.btn{padding:13px 20px;border-radius:10px;border:1px solid var(--line);font-weight:600;font-size:14px}.primary{background:#fff;color:#08090c}.secondary{background:var(--panel)}
-.socials{display:flex;gap:22px;margin-top:24px;color:#8e97aa;font-size:14px}.socials a:hover{color:#fff}
-.hero-card{min-height:420px;display:flex;align-items:center;justify-content:center;position:relative}
-.orb{position:absolute;width:280px;height:280px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));filter:blur(60px);opacity:.35}
-.code-window{width:100%;max-width:500px;background:#0c0e14;border:1px solid #272d3a;border-radius:18px;padding:18px;box-shadow:0 30px 80px rgba(0,0,0,.45);transform:rotate(2deg)}
-.dots{display:flex;gap:6px;margin-bottom:22px}.dots i{width:8px;height:8px;border-radius:50%;background:#404653}
-pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px;color:#b7c0d0;white-space:pre-wrap}code span{color:#c792ea}code b{color:#8be9fd}
-.section{max-width:1200px;margin:auto;padding:110px 6%}.section h2,.contact h2{font-size:clamp(30px,4vw,48px);letter-spacing:-1.5px;margin:12px 0 40px}.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:45px;color:var(--muted);font-size:17px}
-.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.skill-card,.activity-grid div{background:var(--panel);border:1px solid var(--line);padding:20px;border-radius:13px;transition:.25s}.skill-card:hover,.project-card:hover,.activity-grid div:hover{transform:translateY(-4px);border-color:#41495a}.skill-card strong{display:block}.skill-card span{display:block;color:var(--muted);font-size:12px;margin-top:5px}
-.section-intro{color:var(--muted);margin-top:-25px;margin-bottom:35px}
-.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.project-card{position:relative;background:linear-gradient(145deg,#11141c,#0c0e13);border:1px solid var(--line);border-radius:16px;padding:28px;min-height:260px;transition:.25s}.project-card.featured{border-color:#3d356a}.project-number{font-size:12px;color:#71798b;margin-bottom:30px}.project-card h3{font-size:24px;margin-bottom:10px}.project-card p{color:var(--muted);font-size:14px;max-width:570px}.tags{display:flex;gap:7px;flex-wrap:wrap;margin:20px 0}.tags span{font-size:11px;padding:5px 8px;border-radius:6px;background:#1a1e29;color:#aeb6c6}.project-card>a{font-size:13px;font-weight:600;color:#b7adff}
-.timeline{border-left:1px solid var(--line);padding-left:30px}.timeline-item span{font-size:12px;color:var(--accent2);font-weight:700}.timeline-item h3{font-size:24px;margin:8px 0}.timeline-item p{color:var(--muted)}
-.activity-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.activity-grid div{font-size:14px;color:#c8ceda}
-.contact{max-width:1200px;margin:30px auto 100px;padding:70px 6%;border:1px solid var(--line);border-radius:22px;background:linear-gradient(120deg,#11131c,#0b0d12);text-align:center}.contact p{color:var(--muted)}.contact-links{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px}.contact-links a{padding:11px 15px;border:1px solid var(--line);border-radius:9px;font-size:13px}.contact-links a:hover{border-color:#565f73}
-footer{border-top:1px solid var(--line);padding:25px 6%;display:flex;justify-content:space-between;color:#697183;font-size:12px}
-@media(max-width:850px){nav{display:none}.menu-btn{display:block}.navbar.open nav{display:flex;position:absolute;top:70px;left:0;right:0;background:#0a0b10;padding:20px 6%;flex-direction:column;gap:15px}.hero-grid,.about-grid,.projects-grid{grid-template-columns:1fr}.hero-card{min-height:300px}.skills-grid,.activity-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.hero{padding-top:110px}.section{padding:80px 5%}.skills-grid,.activity-grid{grid-template-columns:1fr}h1{letter-spacing:-2px}.code-window{transform:none}footer{flex-direction:column;gap:8px}}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-.btn.live{background:linear-gradient(135deg,#7c5cff,#23d5ff);color:#fff;border:0;box-shadow:0 10px 30px rgba(124,92,255,.22)}
-.project-topline{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.live-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:1px;font-weight:800;padding:6px 9px;border:1px solid #244c3c;border-radius:999px;color:#8de8b7;background:#0c1b15}
-.live-badge i{width:6px;height:6px;border-radius:50%;background:#42e38c;box-shadow:0 0 10px #42e38c}
-.deployment-box{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:20px 0}
-.deployment-box div{padding:10px;border:1px solid #252b38;border-radius:9px;background:#0d1016}
-.deployment-box span{display:block;color:#70798c;font-size:10px;text-transform:uppercase;letter-spacing:.7px}
-.deployment-box strong{display:block;margin-top:3px;font-size:11px}
-.project-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-.project-live{font-weight:700!important;color:#fff!important;background:linear-gradient(135deg,#7c5cff,#23d5ff);padding:10px 13px;border-radius:8px}
-.access-note{margin-top:20px;padding:12px 14px;border-left:2px solid #7c5cff;background:#0d1017;border-radius:0 8px 8px 0}
-.access-note strong{display:block;font-size:11px}
-.access-note span{display:block;color:#777f90;font-size:10px;margin-top:3px}
-@media(max-width:850px){.deployment-box{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.deployment-box{grid-template-columns:1fr 1fr}}
+:root {
+  --bg: #07080c;
+  --panel: #101219;
+  --text: #f5f7fb;
+  --muted: #9ba3b4;
+  --line: #242936;
+
+  --accent: #7c5cff;
+  --accent2: #23d5ff;
+
+  /* Mind map colors */
+  --map-root: #23d5ff;
+  --map-frontend: #ff8a00;
+  --map-shell: #ff6bb5;
+  --map-backend: #19d3e6;
+  --map-deployment: #b77cff;
+  --map-child: #dce3f0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Inter, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(124, 92, 255, 0.12),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 10% 40%,
+      rgba(35, 213, 255, 0.06),
+      transparent 25%
+    );
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 20px 6%;
+
+  background: rgba(7, 8, 12, 0.72);
+
+  backdrop-filter: blur(18px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+nav {
+  display: flex;
+  gap: 28px;
+}
+
+nav a {
+  font-size: 14px;
+  color: var(--muted);
+  transition: 0.2s;
+}
+
+nav a:hover {
+  color: #fff;
+}
+
+.menu-btn {
+  display: none;
+
+  background: none;
+  border: 0;
+
+  color: #fff;
+
+  font-size: 24px;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+
+  padding: 120px 6% 70px;
+}
+
+.hero-grid {
+  width: 100%;
+  max-width: 1200px;
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns: 1.15fr 0.85fr;
+
+  gap: 70px;
+
+  align-items: center;
+}
+
+.eyebrow,
+.section-tag {
+  font-size: 12px;
+
+  letter-spacing: 2px;
+
+  color: #8d95a8;
+
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(44px, 7vw, 78px);
+
+  line-height: 1.02;
+
+  margin: 20px 0 18px;
+
+  letter-spacing: -3px;
+}
+
+h1 span {
+  background: linear-gradient(
+    90deg,
+    #fff,
+    var(--accent2)
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+}
+
+.hero h2 {
+  font-size: clamp(20px, 3vw, 30px);
+
+  font-weight: 600;
+
+  max-width: 720px;
+}
+
+.hero-text {
+  color: var(--muted);
+
+  max-width: 670px;
+
+  margin: 20px 0 30px;
+
+  font-size: 17px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 13px 20px;
+
+  border-radius: 10px;
+
+  border: 1px solid var(--line);
+
+  font-weight: 600;
+
+  font-size: 14px;
+
+  transition: 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.primary {
+  background: #fff;
+  color: #08090c;
+}
+
+.secondary {
+  background: var(--panel);
+}
+
+.btn.live {
+  background: linear-gradient(
+    135deg,
+    #7c5cff,
+    #23d5ff
+  );
+
+  color: #fff;
+
+  border: 0;
+
+  box-shadow:
+    0 10px 30px
+    rgba(124, 92, 255, 0.22);
+}
+
+.socials {
+  display: flex;
+
+  gap: 22px;
+
+  margin-top: 24px;
+
+  color: #8e97aa;
+
+  font-size: 14px;
+}
+
+.socials a:hover {
+  color: #fff;
+}
+
+
+/* =========================================================
+   HERO CARD
+========================================================= */
+
+.hero-card {
+  min-height: 420px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+.orb {
+  position: absolute;
+
+  width: 280px;
+  height: 280px;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    var(--accent),
+    var(--accent2)
+  );
+
+  filter: blur(60px);
+
+  opacity: 0.35;
+}
+
+.code-window {
+  width: 100%;
+
+  max-width: 500px;
+
+  background: #0c0e14;
+
+  border: 1px solid #272d3a;
+
+  border-radius: 18px;
+
+  padding: 18px;
+
+  box-shadow:
+    0 30px 80px
+    rgba(0, 0, 0, 0.45);
+
+  transform: rotate(2deg);
+}
+
+.dots {
+  display: flex;
+
+  gap: 6px;
+
+  margin-bottom: 22px;
+}
+
+.dots i {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #404653;
+}
+
+pre {
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+
+  font-size: 15px;
+
+  color: #b7c0d0;
+
+  white-space: pre-wrap;
+}
+
+code span {
+  color: #c792ea;
+}
+
+code b {
+  color: #8be9fd;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.section {
+  max-width: 1200px;
+
+  margin: auto;
+
+  padding: 110px 6%;
+}
+
+.section h2,
+.contact h2 {
+  font-size: clamp(30px, 4vw, 48px);
+
+  letter-spacing: -1.5px;
+
+  margin: 12px 0 40px;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 45px;
+
+  color: var(--muted);
+
+  font-size: 17px;
+}
+
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
+.skills-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 12px;
+}
+
+.skill-card {
+  background: var(--panel);
+
+  border: 1px solid var(--line);
+
+  padding: 20px;
+
+  border-radius: 13px;
+
+  transition: 0.25s;
+}
+
+.skill-card:hover {
+  transform: translateY(-4px);
+
+  border-color: #41495a;
+}
+
+.skill-card strong {
+  display: block;
+}
+
+.skill-card span {
+  display: block;
+
+  color: var(--muted);
+
+  font-size: 12px;
+
+  margin-top: 5px;
+}
+
+
+/* =========================================================
+   PROJECTS
+========================================================= */
+
+.section-intro {
+  color: var(--muted);
+
+  margin-top: -25px;
+
+  margin-bottom: 35px;
+}
+
+.projects-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 16px;
+}
+
+.project-card {
+  position: relative;
+
+  background:
+    linear-gradient(
+      145deg,
+      #11141c,
+      #0c0e13
+    );
+
+  border: 1px solid var(--line);
+
+  border-radius: 16px;
+
+  padding: 28px;
+
+  min-height: 260px;
+
+  transition: 0.25s;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+
+  border-color: #41495a;
+}
+
+.project-card.featured {
+  border-color: #3d356a;
+}
+
+.project-topline {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.project-number {
+  font-size: 12px;
+
+  color: #71798b;
+
+  margin-bottom: 30px;
+}
+
+.project-card h3 {
+  font-size: 24px;
+
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  color: var(--muted);
+
+  font-size: 14px;
+
+  max-width: 570px;
+}
+
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+.tags {
+  display: flex;
+
+  gap: 7px;
+
+  flex-wrap: wrap;
+
+  margin: 20px 0;
+}
+
+.tags span {
+  font-size: 11px;
+
+  padding: 5px 8px;
+
+  border-radius: 6px;
+
+  background: #1a1e29;
+
+  color: #aeb6c6;
+}
+
+
+/* =========================================================
+   LIVE BADGE
+========================================================= */
+
+.live-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  font-size: 10px;
+
+  letter-spacing: 1px;
+
+  font-weight: 800;
+
+  padding: 6px 9px;
+
+  border: 1px solid #244c3c;
+
+  border-radius: 999px;
+
+  color: #8de8b7;
+
+  background: #0c1b15;
+}
+
+.live-badge i {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #42e38c;
+
+  box-shadow:
+    0 0 10px #42e38c;
+}
+
+
+/* =========================================================
+   DEPLOYMENT
+========================================================= */
+
+.deployment-box {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 8px;
+
+  margin: 20px 0;
+}
+
+.deployment-box div {
+  padding: 10px;
+
+  border: 1px solid #252b38;
+
+  border-radius: 9px;
+
+  background: #0d1016;
+}
+
+.deployment-box span {
+  display: block;
+
+  color: #70798c;
+
+  font-size: 10px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.7px;
+}
+
+.deployment-box strong {
+  display: block;
+
+  margin-top: 3px;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   PROJECT ACTIONS
+========================================================= */
+
+.project-actions {
+  display: flex;
+
+  gap: 10px;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+}
+
+.project-live {
+  font-weight: 700;
+
+  color: #fff !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c5cff,
+      #23d5ff
+    );
+
+  padding: 10px 13px;
+
+  border-radius: 8px;
+
+  font-size: 13px;
+
+  transition: 0.2s;
+}
+
+.project-live:hover {
+  transform: translateY(-2px);
+}
+
+.tech-button {
+  padding: 10px 14px;
+
+  border: 1px solid var(--line);
+
+  border-radius: 8px;
+
+  background: #11151e;
+
+  color: #d9deea;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.tech-button:hover {
+  border-color: var(--accent);
+
+  color: #fff;
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   ACCESS NOTE
+========================================================= */
+
+.access-note {
+  margin-top: 20px;
+
+  padding: 12px 14px;
+
+  border-left: 2px solid var(--accent);
+
+  background: #0d1017;
+
+  border-radius: 0 8px 8px 0;
+}
+
+.access-note strong {
+  display: block;
+
+  font-size: 11px;
+}
+
+.access-note span {
+  display: block;
+
+  color: #777f90;
+
+  font-size: 10px;
+
+  margin-top: 3px;
+}
+
+
+/* =========================================================
+   EDUCATION
+========================================================= */
+
+.timeline {
+  border-left: 1px solid var(--line);
+
+  padding-left: 30px;
+}
+
+.timeline-item span {
+  font-size: 12px;
+
+  color: var(--accent2);
+
+  font-weight: 700;
+}
+
+.timeline-item h3 {
+  font-size: 24px;
+
+  margin: 8px 0;
+}
+
+.timeline-item p {
+  color: var(--muted);
+}
+
+
+/* =========================================================
+   ACTIVITIES
+========================================================= */
+
+.activity-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 12px;
+}
+
+.activity-grid div {
+  background: var(--panel);
+
+  border: 1px solid var(--line);
+
+  padding: 20px;
+
+  border-radius: 13px;
+
+  font-size: 14px;
+
+  color: #c8ceda;
+
+  transition: 0.25s;
+}
+
+.activity-grid div:hover {
+  transform: translateY(-4px);
+
+  border-color: #41495a;
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact {
+  max-width: 1200px;
+
+  margin: 30px auto 100px;
+
+  padding: 70px 6%;
+
+  border: 1px solid var(--line);
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      120deg,
+      #11131c,
+      #0b0d12
+    );
+
+  text-align: center;
+}
+
+.contact p {
+  color: var(--muted);
+}
+
+.contact-links {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+
+  margin-top: 30px;
+}
+
+.contact-links a {
+  padding: 11px 15px;
+
+  border: 1px solid var(--line);
+
+  border-radius: 9px;
+
+  font-size: 13px;
+
+  transition: 0.2s;
+}
+
+.contact-links a:hover {
+  border-color: #565f73;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+  border-top: 1px solid var(--line);
+
+  padding: 25px 6%;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  color: #697183;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   INTERACTIVE MIND MAP MODAL
+========================================================= */
+
+.tech-modal {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 100;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.84);
+
+  backdrop-filter: blur(12px);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: opacity 0.25s;
+}
+
+.tech-modal.active {
+  opacity: 1;
+
+  pointer-events: auto;
+}
+
+
+/* =========================================================
+   MIND MAP PANEL
+========================================================= */
+
+.tech-modal-panel {
+  width: min(1280px, 96vw);
+
+  height: min(800px, 92vh);
+
+  background: #0b0e14;
+
+  border: 1px solid #2a3040;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  display: flex;
+
+  flex-direction: column;
+
+  box-shadow:
+    0 30px 100px
+    rgba(0, 0, 0, 0.65);
+}
+
+
+/* =========================================================
+   MIND MAP HEADER
+========================================================= */
+
+.tech-modal-header {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 22px 26px;
+
+  border-bottom: 1px solid #252b37;
+
+  flex-shrink: 0;
+}
+
+.tech-modal-header h2 {
+  margin-top: 5px;
+
+  font-size: 30px;
+
+  letter-spacing: -1px;
+}
+
+.close-tech {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 10px;
+
+  border: 1px solid #343b4b;
+
+  background: #11151e;
+
+  color: white;
+
+  font-size: 28px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.close-tech:hover {
+  border-color: var(--accent);
+
+  background: #171c27;
+
+  transform: scale(1.05);
+}
+
+
+/* =========================================================
+   TREE CONTROLS
+========================================================= */
+
+.tree-controls {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 12px 20px;
+
+  border-bottom: 1px solid #202631;
+
+  flex-shrink: 0;
+}
+
+.tree-controls button {
+  padding: 7px 12px;
+
+  border-radius: 7px;
+
+  border: 1px solid #303746;
+
+  background: #11151d;
+
+  color: #d8ddea;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.tree-controls button:hover {
+  border-color: var(--accent);
+
+  color: white;
+
+  background: #171c27;
+}
+
+#zoomValue {
+  min-width: 55px;
+
+  text-align: center;
+
+  font-size: 12px;
+
+  color: #8f98aa;
+}
+
+
+/* =========================================================
+   TREE CONTAINER
+========================================================= */
+
+.tech-tree {
+  position: relative;
+
+  flex: 1;
+
+  min-height: 0;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(124, 92, 255, 0.045),
+      transparent 48%
+    );
+
+  cursor: grab;
+}
+
+.tech-tree:active {
+  cursor: grabbing;
+}
+
+.tech-map {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+}
+
+
+/* =========================================================
+   MIND MAP BASE TEXT
+========================================================= */
+
+.tech-map text {
+  font-family:
+    Inter,
+    system-ui,
+    sans-serif !important;
+
+  font-weight: 600 !important;
+
+  fill: var(--map-child) !important;
+
+  color: var(--map-child) !important;
+
+  transition:
+    fill 0.2s ease,
+    color 0.2s ease;
+}
+
+
+/* =========================================================
+   MIND MAP NODES
+========================================================= */
+
+.tech-map .markmap-node {
+  cursor: pointer;
+}
+
+.tech-map .markmap-node > circle {
+  fill: #11151e !important;
+
+  stroke: #8791a6 !important;
+
+  stroke-width: 2px !important;
+
+  transition:
+    stroke 0.2s ease,
+    filter 0.2s ease;
+}
+
+
+/* =========================================================
+   ROOT NODE
+   Punas Power Shell = BLUE
+========================================================= */
+
+.tech-map .markmap-node.map-root text {
+  fill: var(--map-root) !important;
+
+  color: var(--map-root) !important;
+
+  font-weight: 800 !important;
+
+  font-size: 20px !important;
+}
+
+.tech-map .markmap-node.map-root > circle {
+  stroke: var(--map-root) !important;
+
+  filter:
+    drop-shadow(
+      0 0 5px
+      rgba(35, 213, 255, 0.35)
+    );
+}
+
+
+/* =========================================================
+   FRONTEND = ORANGE
+========================================================= */
+
+.tech-map .markmap-node.map-frontend text {
+  fill: var(--map-frontend) !important;
+
+  color: var(--map-frontend) !important;
+
+  font-weight: 700 !important;
+}
+
+.tech-map .markmap-node.map-frontend > circle {
+  stroke: var(--map-frontend) !important;
+}
+
+
+/* =========================================================
+   SHELL = PINK
+========================================================= */
+
+.tech-map .markmap-node.map-shell text {
+  fill: var(--map-shell) !important;
+
+  color: var(--map-shell) !important;
+
+  font-weight: 700 !important;
+}
+
+.tech-map .markmap-node.map-shell > circle {
+  stroke: var(--map-shell) !important;
+}
+
+
+/* =========================================================
+   BACKEND = CYAN
+========================================================= */
+
+.tech-map .markmap-node.map-backend text {
+  fill: var(--map-backend) !important;
+
+  color: var(--map-backend) !important;
+
+  font-weight: 700 !important;
+}
+
+.tech-map .markmap-node.map-backend > circle {
+  stroke: var(--map-backend) !important;
+}
+
+
+/* =========================================================
+   DEPLOYMENT = PURPLE
+========================================================= */
+
+.tech-map .markmap-node.map-deployment text {
+  fill: var(--map-deployment) !important;
+
+  color: var(--map-deployment) !important;
+
+  font-weight: 700 !important;
+}
+
+.tech-map .markmap-node.map-deployment > circle {
+  stroke: var(--map-deployment) !important;
+}
+
+
+/* =========================================================
+   CHILD TECHNOLOGIES
+========================================================= */
+
+.tech-map .markmap-node.map-child text {
+  fill: var(--map-child) !important;
+
+  color: var(--map-child) !important;
+
+  font-weight: 500 !important;
+
+  font-size: 16px !important;
+}
+
+
+/* =========================================================
+   CONNECTIONS
+========================================================= */
+
+.tech-map .markmap-link {
+  stroke: #687286 !important;
+
+  stroke-width: 2px !important;
+
+  opacity: 0.9;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.tech-map .markmap-node:hover > circle {
+  filter:
+    drop-shadow(
+      0 0 7px
+      rgba(35, 213, 255, 0.55)
+    );
+}
+
+
+/* Keep the assigned branch color on hover */
+
+.tech-map .markmap-node.map-root:hover text {
+  fill: var(--map-root) !important;
+}
+
+.tech-map .markmap-node.map-frontend:hover text {
+  fill: var(--map-frontend) !important;
+}
+
+.tech-map .markmap-node.map-shell:hover text {
+  fill: var(--map-shell) !important;
+}
+
+.tech-map .markmap-node.map-backend:hover text {
+  fill: var(--map-backend) !important;
+}
+
+.tech-map .markmap-node.map-deployment:hover text {
+  fill: var(--map-deployment) !important;
+}
+
+.tech-map .markmap-node.map-child:hover text {
+  fill: #ffffff !important;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.tech-tree.loading::after {
+  content: "Loading interactive mind map…";
+
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #8f98aa;
+
+  font-size: 13px;
+
+  background: rgba(11, 14, 20, 0.7);
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.mindmap-error {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-direction: column;
+
+  gap: 6px;
+
+  color: #d8ddea;
+
+  text-align: center;
+}
+
+.mindmap-error span {
+  color: #7f899b;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+
+  nav {
+    display: none;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  .navbar.open nav {
+    display: flex;
+
+    position: absolute;
+
+    top: 70px;
+
+    left: 0;
+
+    right: 0;
+
+    background: #0a0b10;
+
+    padding: 20px 6%;
+
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  .hero-grid,
+  .about-grid,
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-card {
+    min-height: 300px;
+  }
+
+  .skills-grid,
+  .activity-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .deployment-box {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tech-modal-panel {
+    width: 96vw;
+
+    height: 90vh;
+  }
+
+  .tech-map .markmap-node text {
+    font-size: 14px !important;
+  }
+
+  .tech-map .markmap-node.map-root text {
+    font-size: 18px !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 520px) {
+
+  .hero {
+    padding-top: 110px;
+  }
+
+  .section {
+    padding: 80px 5%;
+  }
+
+  .skills-grid,
+  .activity-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .deployment-box {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  h1 {
+    letter-spacing: -2px;
+  }
+
+  .code-window {
+    transform: none;
+  }
+
+  footer {
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+  .tech-modal {
+    padding: 8px;
+  }
+
+  .tech-modal-panel {
+    width: 100%;
+
+    height: 95vh;
+
+    border-radius: 14px;
+  }
+
+  .tech-modal-header {
+    padding: 18px;
+  }
+
+  .tech-modal-header h2 {
+    font-size: 22px;
+  }
+
+  .tree-controls {
+    padding: 10px;
+  }
+
+  .tree-controls button {
+    padding: 6px 10px;
+
+    font-size: 12px;
+  }
+
+  .tech-map .markmap-node text {
+    font-size: 13px !important;
+  }
+
+  .tech-map .markmap-node.map-root text {
+    font-size: 17px !important;
+  }
+}
+/* =========================================================
+   MARKMAP - FORCE COLORED NODE LABELS
+========================================================= */
+
+/* Root project */
+.tech-map .map-root,
+.tech-map .map-root text,
+.tech-map .map-root foreignObject,
+.tech-map .map-root foreignObject div {
+  color: #23d5ff !important;
+  fill: #23d5ff !important;
+}
+
+
+/* Frontend */
+.tech-map .map-frontend,
+.tech-map .map-frontend text,
+.tech-map .map-frontend foreignObject,
+.tech-map .map-frontend foreignObject div {
+  color: #ff9d1a !important;
+  fill: #ff9d1a !important;
+}
+
+
+/* Shell */
+.tech-map .map-shell,
+.tech-map .map-shell text,
+.tech-map .map-shell foreignObject,
+.tech-map .map-shell foreignObject div {
+  color: #ff72bd !important;
+  fill: #ff72bd !important;
+}
+
+
+/* Backend */
+.tech-map .map-backend,
+.tech-map .map-backend text,
+.tech-map .map-backend foreignObject,
+.tech-map .map-backend foreignObject div {
+  color: #23d9e8 !important;
+  fill: #23d9e8 !important;
+}
+
+
+/* Deployment */
+.tech-map .map-deployment,
+.tech-map .map-deployment text,
+.tech-map .map-deployment foreignObject,
+.tech-map .map-deployment foreignObject div {
+  color: #b986ff !important;
+  fill: #b986ff !important;
+}
+
+
+/* All other nodes */
+.tech-map .map-child,
+.tech-map .map-child text,
+.tech-map .map-child foreignObject,
+.tech-map .map-child foreignObject div {
+  color: #e8edf5 !important;
+  fill: #e8edf5 !important;
+}
+
+
+/* =========================================================
+   MARKMAP SVG TEXT
+========================================================= */
+
+.tech-map svg text {
+  font-family: Inter, system-ui, sans-serif !important;
+}
+
+
+/* =========================================================
+   ROOT FONT
+========================================================= */
+
+.tech-map .map-root text,
+.tech-map .map-root foreignObject div {
+  font-size: 20px !important;
+  font-weight: 800 !important;
+}
+
+
+/* =========================================================
+   MAIN BRANCH FONT
+========================================================= */
+
+.tech-map .map-frontend text,
+.tech-map .map-shell text,
+.tech-map .map-backend text,
+.tech-map .map-deployment text,
+
+.tech-map .map-frontend foreignObject div,
+.tech-map .map-shell foreignObject div,
+.tech-map .map-backend foreignObject div,
+.tech-map .map-deployment foreignObject div {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+}
+
+
+/* =========================================================
+   CHILD FONT
+========================================================= */
+
+.tech-map .map-child text,
+.tech-map .map-child foreignObject div {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+
+
+/* =========================================================
+   NODE CIRCLES
+========================================================= */
+
+.tech-map .map-root circle {
+  stroke: #23d5ff !important;
+}
+
+.tech-map .map-frontend circle {
+  stroke: #ff9d1a !important;
+}
+
+.tech-map .map-shell circle {
+  stroke: #ff72bd !important;
+}
+
+.tech-map .map-backend circle {
+  stroke: #23d9e8 !important;
+}
+
+.tech-map .map-deployment circle {
+  stroke: #b986ff !important;
+}
+
+.tech-map .map-child circle {
+  stroke: #e8edf5 !important;
+}
+
+
+/* =========================================================
+   PREVENT MARKMAP DEFAULT TEXT COLOR
+========================================================= */
+
+.tech-map .markmap-node text {
+  color: inherit !important;
+}
+
+.tech-map .markmap-node foreignObject {
+  overflow: visible !important;
+}
+
+.tech-map .markmap-node foreignObject * {
+  opacity: 1 !important;
+}
+
+
+/* =========================================================
+   REMOVE OLD DEFAULT MARKMAP TEXT COLOR
+========================================================= */
+
+.tech-map text[fill="#333"],
+.tech-map text[fill="#000"],
+.tech-map text[fill="black"] {
+  fill: #e8edf5 !important;
+}
